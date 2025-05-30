@@ -5,6 +5,7 @@ const cors = require("cors");
 const connection = require("./db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const protectedRoutes = require("./routes/protectedRoutes");
 
 // Database connection
 connection();
@@ -16,6 +17,7 @@ app.use(cors());
 // Routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/services", protectedRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

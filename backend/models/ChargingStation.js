@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const chargingStationSchema = new mongoose.Schema(
   {
     name: {
@@ -25,11 +26,6 @@ const chargingStationSchema = new mongoose.Schema(
       required: true,
       min: 0,
     },
-    // connectorType: {
-    //   type: String,
-    //   required: true,
-    //   enum: ["Type1", "Type2", "CCS", "CHAdeMO", "Tesla", "Other"],
-    // },
     connectorType: {
       type: String,
       required: true,
