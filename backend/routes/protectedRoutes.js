@@ -49,6 +49,7 @@ router.post("/stations", validateStationData, async (req, res) => {
 router.put("/stations/:id", validateStationData, async (req, res) => {
   try {
     const station = await stationService.updateStation(req.params.id, req.body);
+    console.log("Received update data:", req.body);
     res.json(station);
   } catch (error) {
     res.status(400).json({ error: error.message });

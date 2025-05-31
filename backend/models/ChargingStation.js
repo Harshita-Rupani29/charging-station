@@ -39,7 +39,6 @@ const chargingStationSchema = new mongoose.Schema(
         "NACS",
         "GBT-AC",
         "GBT-DC",
-        "Other",
       ],
     },
 

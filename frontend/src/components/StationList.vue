@@ -1,5 +1,6 @@
 <template>
   <div class="station-list">
+    <!-- Filters -->
     <div class="filters">
       <select v-model="filters.status" class="filter-select">
         <option value="">All Status</option>
@@ -29,20 +30,25 @@
       />
     </div>
 
+    <!-- Stations -->
     <div class="stations">
       <div v-for="station in stations" :key="station._id" class="station-card">
-        <h3>{{ station.name }}</h3>
-        <p>Status: {{ station.status }}</p>
-        <p>Power Output: {{ station.powerOutput }} kW</p>
-        <p>Connector Type: {{ station.connectorType }}</p>
+        <div class="station-header">
+          <h3>{{ station.name }}</h3>
+          <span :class="['status-tag', station.status]">{{ station.status }}</span>
+        </div>
+        <div class="station-details">
+          <div><strong>{{ station.powerOutput }} kW</strong> • {{ station.connectorType }}</div>
+        </div>
         <div class="station-actions">
-          <button @click="editStation(station)" class="btn-edit">Edit</button>
-          <button @click="deleteStation(station._id)" class="btn-delete">Delete</button>
+          <button @click="editStation(station)" class="btn small update">Update</button>
+          <button @click="deleteStation(station._id)" class="btn small delete">Delete</button>
         </div>
       </div>
     </div>
 
-    <button @click="showAddForm = true" class="btn-add">Add New Station</button>
+    <!-- Add Button -->
+    <button @click="showAddForm = true" class="btn add">Add New Station</button>
 
     <StationForm
       v-if="showAddForm || editingStation"
@@ -52,6 +58,7 @@
     />
   </div>
 </template>
+
 
 <script setup>
 import { ref, watch, onMounted } from 'vue'
@@ -70,7 +77,6 @@ const filters = ref({
   minPower: ''
 })
 
-// Fetch stations from backend using current filters
 const loadStations = async () => {
   try {
     stations.value = await stationService.getAllStations(filters.value)
@@ -79,7 +85,6 @@ const loadStations = async () => {
   }
 }
 
-// Watch filters for changes and reload stations when changed
 watch(filters, loadStations, { deep: true })
 
 const editStation = (station) => {
@@ -120,71 +125,117 @@ const closeForm = () => {
   editingStation.value = null
 }
 
-// Initial load
 onMounted(loadStations)
 </script>
 
 <style scoped>
 .station-list {
-  padding: 20px;
+  padding: 1rem;
 }
 
 .filters {
-  margin-bottom: 20px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
 .filter-select,
 .filter-input {
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 .stations {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .station-card {
+  background: #fff;
   border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  background-color: white;
+  border-radius: 10px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.station-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.station-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.status-tag {
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.status-tag.active {
+  background: #e0f8ec;
+  color: #1e824c;
+}
+
+.status-tag.inactive {
+  background: #ffe0e0;
+  color: #c0392b;
+}
+
+.station-details {
+  font-size: 14px;
+  color: #444;
 }
 
 .station-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  justify-content: flex-end;
+  gap: 8px;
 }
 
-.btn-edit,
-.btn-delete,
-.btn-add {
-  padding: 8px 16px;
+.btn {
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
+  font-size: 14px;
   cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
 }
 
-.btn-edit {
-  background-color: #4CAF50;
+.btn.small {
+  padding: 5px 10px;
+}
+
+.btn.update {
+  background-color: #3498db;
   color: white;
 }
 
-.btn-delete {
-  background-color: #f44336;
+.btn.delete {
+  background-color: #e74c3c;
   color: white;
 }
 
-.btn-add {
-  background-color: #2196F3;
-  color: white;
+.btn.add {
   margin-top: 20px;
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 14px;
 }
+
+
 </style>

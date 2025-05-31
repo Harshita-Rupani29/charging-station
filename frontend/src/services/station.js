@@ -1,7 +1,6 @@
 import axios from "axios";
 const API_URL = "http://localhost:8080/api/services";
 
-// attach JWT token to every request
 axios.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
