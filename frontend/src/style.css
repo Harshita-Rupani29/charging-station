@@ -1,0 +1,16 @@
+:root {
+  --bg-dark: #121212;
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-blur: blur(10px);
+  --primary: #5a77ff;
+  --danger: #ff4c60;
+  --success: #28c76f;
+  --text-light: #e0e0e0;
+  --text-muted: #999;
+  --border-radius: 12px;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}

@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const API_URL = "http://localhost:8080/api";
+const API_URL = "http://localhost:8080/api/services";
 
 // attach JWT token to every request
 axios.interceptors.request.use(
@@ -16,7 +15,14 @@ axios.interceptors.request.use(
 
 export const stationService = {
   async getAllStations(filters = {}) {
-    const queryParams = new URLSearchParams(filters).toString();
+    const query = {};
+
+    if (filters.status) query.status = filters.status.toLowerCase();
+    if (filters.connectorType) query.connectorType = filters.connectorType;
+    if (filters.minPower) query.powerOutput = Number(filters.minPower);
+
+    const queryParams = new URLSearchParams(query).toString();
+
     const response = await axios.get(
       `${API_URL}/stations${queryParams ? `?${queryParams}` : ""}`
     );
