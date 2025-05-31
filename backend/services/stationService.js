@@ -48,7 +48,6 @@ class StationService {
       // Apply updates
       Object.assign(station, updateData);
 
-      // Ensure status is lowercase
       if (updateData.status) {
         station.status = updateData.status.toLowerCase();
       }

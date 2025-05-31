@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <aside class="sidebar">
-      <h2>EV Dashboard</h2>
+      <h2>Charging Station</h2>
 
       <nav class="sidebar-links">
         <router-link

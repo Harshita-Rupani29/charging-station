@@ -1,6 +1,6 @@
 <template>
   <div class="station-list">
-    <!-- Filters -->
+  
     <div class="filters">
       <select v-model="filters.status" class="filter-select">
         <option value="">All Status</option>
@@ -19,7 +19,6 @@
         <option value="NACS">NACS</option>
         <option value="GBT-AC">GBT-AC</option>
         <option value="GBT-DC">GBT-DC</option>
-        <option value="Other">Other</option>
       </select>
 
       <input

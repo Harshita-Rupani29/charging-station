@@ -5,7 +5,6 @@ const stationService = require("../services/stationService");
 const validateToken = require("../middlewares/validateToken");
 const { validateStationData } = require("../middlewares/validation");
 
-// Apply token validation to all routes
 router.use(validateToken);
 
 // Get all stations with optional filters
@@ -56,7 +55,7 @@ router.put("/stations/:id", validateStationData, async (req, res) => {
   }
 });
 
-// Delete station=
+// Delete station
 router.delete("/stations/:id", async (req, res) => {
   try {
     await stationService.deleteStation(req.params.id);
