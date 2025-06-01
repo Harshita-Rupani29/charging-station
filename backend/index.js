@@ -12,7 +12,6 @@ connection();
 
 const corsOptions = {
   origin: "https://charging-station-frontend.onrender.com",
-  credentials: true,
 };
 
 // Middleware
