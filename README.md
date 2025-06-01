@@ -11,7 +11,7 @@ A full-stack web application to manage EV charging stations. Includes user regis
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ### Frontend (Vue 3 + Vite)
 
@@ -45,11 +45,11 @@ Located in the `/backend` folder.
 
 ---
 
-## 🧪 Postman Testing Guide
+## Postman Testing Guide
 
 > **Base URL:** `https://charging-station-skuf.onrender.com`
 
-### 👤 Register a New User
+### Register a New User
 
 **URL:** `POST /users`  
 **Body:**
@@ -64,7 +64,7 @@ Located in the `/backend` folder.
 
 ---
 
-### 🔐 Login
+### Login
 
 **URL:** `POST /auth`  
 **Body:**
@@ -87,7 +87,7 @@ Located in the `/backend` folder.
 
 ---
 
-### 🚪 Logout
+###  Logout
 
 **URL:** `POST /auth/logout`  
 **Response:**
@@ -99,11 +99,11 @@ Located in the `/backend` folder.
 
 ---
 
-## 🔒 Protected Routes
+##  Protected Routes
 
 > These require Bearer token authentication.
 
-### 📍 Get All Charging Stations
+###  Get All Charging Stations
 
 **URL:** `GET /services/stations`  
 **Optional Query Params:**
@@ -131,13 +131,13 @@ Located in the `/backend` folder.
 
 ---
 
-### 🔍 Get a Charging Station by ID
+###  Get a Charging Station by ID
 
 **URL:** `GET /services/stations/:id`
 
 ---
 
-### ➕ Create a New Charging Station
+### Create a New Charging Station
 
 **URL:** `POST /services/stations`  
 **Body:**
@@ -156,7 +156,7 @@ Located in the `/backend` folder.
 
 ---
 
-### ✏️ Update Charging Station
+###  Update Charging Station
 
 **URL:** `PUT /services/stations/:id`  
 **Body:**
@@ -175,14 +175,14 @@ Located in the `/backend` folder.
 
 ---
 
-### ❌ Delete Charging Station
+###  Delete Charging Station
 
 **URL:** `DELETE /services/stations/:id`  
 **Success Response:** `204 No Content`
 
 ---
 
-## ⚙️ Setup Instructions
+## Setup Instructions
 
 ### Backend Setup
 
@@ -215,6 +215,6 @@ npm run dev
 
 ---
 
-## 📄 License
+## License
 
 **MIT License** – Free to use and modify.
