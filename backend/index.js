@@ -10,9 +10,14 @@ const protectedRoutes = require("./routes/protectedRoutes");
 // Database connection
 connection();
 
+const corsOptions = {
+  origin: "https://charging-station-frontend.onrender.com",
+  credentials: true,
+};
+
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Routes
 app.use("/api/users", userRoutes);
