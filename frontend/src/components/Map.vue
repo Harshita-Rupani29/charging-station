@@ -66,11 +66,22 @@ const logout = () => {
 const isActive = (path) => route.path === path
 
 const initMap = () => {
+  
+  if (map) {
+    map.remove()
+    map = null
+  }
+  if (mapContainer.value._leaflet_id) {
+    delete mapContainer.value._leaflet_id
+  }
+
   map = L.map(mapContainer.value).setView([51.505, -0.09], 13)
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
   }).addTo(map)
 }
+
+
 
 const addMarkers = () => {
   markers.forEach(m => map.removeLayer(m))
@@ -120,8 +131,10 @@ onMounted(() => {
 onUnmounted(() => {
   if (map) {
     map.remove()
+    map = null
   }
 })
+
 </script>
 
 <style scoped>
